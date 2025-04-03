@@ -2,11 +2,13 @@ import { Card } from "@/app/components/Card";
 import { MovieType } from "@/util/Type";
 import { TOKEN } from "@/util/constants";
 import { MoreLike } from "@/app/components/MoreLike";
-const Movie = async ({
-  params: { movietype, movieid },
-}: {
-  params: { movietype: string; movieid: string };
+const Movie = async (props: {
+  params: Promise<{ movietype: string; movieid: string }>;
 }) => {
+  const params = await props.params;
+  const movietype = await params.movietype;
+  const movieid = await params.movieid;
+
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/${movietype}?language=en-US&page=1`,
     {

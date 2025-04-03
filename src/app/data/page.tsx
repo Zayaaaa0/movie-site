@@ -3,7 +3,9 @@ import { Card } from "../components/Card";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 async function Upcoming() {
-  const response = await fetch("http://localhost:4000/");
+  const response = await fetch(
+    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1"
+  );
   const data = await response.json();
   console.log("mni server", data);
   return (

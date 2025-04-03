@@ -128,11 +128,11 @@ import { DialogDemo } from "@/app/components/Dialog";
 import { Badge } from "@/components/ui/badge";
 import { formatRuntime } from "@/util/constants";
 
-export default async function MoviePage({
-  params: { movieid },
-}: {
-  params: { movieid: string };
+export default async function MoviePage(props: {
+  params: Promise<{ movieid: string }>;
 }) {
+  const params = await props.params;
+  const movieid = await params.movieid;
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/${movieid}?language=en-US`,
     {
